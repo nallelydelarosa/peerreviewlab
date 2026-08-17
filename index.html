@@ -1,0 +1,684 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Peer Review Lab | Peer Reviewing Modern Life</title>
+
+  <meta
+    name="description"
+    content="Peer Review Lab uses research to make sense of culture, pop culture, relationships, internet discourse, news, and everyday life."
+  >
+
+  <style>
+    :root {
+      --ink: #171717;
+      --paper: #f7f3ed;
+      --white: #fffdf9;
+      --pink: #f0c9d5;
+      --yellow: #f2e7a6;
+      --green: #cddfc9;
+      --blue: #cbdce8;
+      --border: #242424;
+      --muted: #68645f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(4rem, 11vw, 8.5rem);
+      line-height: 0.83;
+      letter-spacing: -0.075em;
+    }
+
+    .hero-tagline {
+      margin: 35px 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+    }
+
+    .hero-description {
+      max-width: 690px;
+      margin: 0 0 32px;
+      font-size: 1.05rem;
+    }
+
+    .topics {
+      margin-top: 26px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 90px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      margin-bottom: 35px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .section-title {
+      max-width: 850px;
+      margin: 0 0 45px;
+      font-size: clamp(2.7rem, 7vw, 5.3rem);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+    }
+
+    /* QUESTIONS */
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .question {
+      min-height: 220px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 1.05;
+    }
+
+    .question:nth-child(1) {
+      background: var(--pink);
+    }
+
+    .question:nth-child(2) {
+      background: var(--yellow);
+    }
+
+    .question:nth-child(3) {
+      background: var(--blue);
+    }
+
+    .question:nth-child(4) {
+      background: var(--green);
+    }
+
+    .question:nth-child(5),
+    .question:nth-child(6) {
+      background: var(--white);
+    }
+
+    /* MANIFESTO */
+
+    .manifesto {
+      max-width: 880px;
+    }
+
+    .manifesto p {
+      margin: 0 0 25px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.65rem, 4vw, 2.7rem);
+      line-height: 1.18;
+    }
+
+    .manifesto .small {
+      max-width: 650px;
+      margin-top: 45px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* SERIES */
+
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .series-card {
+      min-height: 260px;
+      padding: 30px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .series-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .series-card h3 {
+      margin: 55px 0 12px;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .series-card p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* PEOPLE */
+
+    .people {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .people-copy {
+      max-width: 850px;
+    }
+
+    .people-copy p {
+      max-width: 650px;
+      font-size: 1.05rem;
+    }
+
+    /* SUBMIT */
+
+    .submit-box {
+      max-width: 850px;
+      border: 1px solid var(--border);
+      padding: clamp(28px, 6vw, 60px);
+      background: var(--white);
+    }
+
+    .submit-box h2 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 0.95;
+    }
+
+    .submit-box p {
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 50px 0 70px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: flex-end;
+    }
+
+    .footer-brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+    }
+
+    .footer-small {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 28px, 1100px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 72vh;
+        padding: 60px 0;
+      }
+
+      .question-grid,
+      .series-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .question {
+        min-height: 170px;
+      }
+
+      .footer-grid {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">Peer Review Lab</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#series">Series</a>
+        <a href="#submit">Submit a Question</a>
+      </div>
+    </nav>
+
+    <main>
+
+      <!-- HERO -->
+
+      <header class="hero">
+        <div class="eyebrow">science • culture • receipts</div>
+
+        <h1>Peer Review Lab</h1>
+
+        <div class="hero-tagline">peer reviewing modern life.</div>
+
+        <p class="hero-description">
+          Science, culture, pop culture, and the things the internet
+          can't stop arguing about.
+        </p>
+
+        <div class="buttons">
+
+          <!-- Replace these URLs with the final social profile links -->
+
+          <a
+            class="button primary"
+            href="https://www.instagram.com/peerreviewlab/"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+
+          <a
+            class="button"
+            href="#"
+            target="_blank"
+            rel="noopener"
+          >
+            TikTok
+          </a>
+
+        </div>
+
+        <div class="topics">
+          research • reality tv • relationships • internet discourse • people worth knowing
+        </div>
+      </header>
+
+
+      <!-- QUESTIONS -->
+
+      <section>
+        <div class="section-label">So, what are we peer reviewing?</div>
+
+        <div class="question-grid">
+
+          <div class="question">
+            Is AI making us dumber?
+          </div>
+
+          <div class="question">
+            Are New Yorkers actually rude?
+          </div>
+
+          <div class="question">
+            Why is everyone on reality TV terrible at communicating?
+          </div>
+
+          <div class="question">
+            Is college actually a scam?
+          </div>
+
+          <div class="question">
+            Does everyone secretly like you more than you think?
+          </div>
+
+          <div class="question">
+            Is Gen Alpha actually doomed?
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- ABOUT -->
+
+      <section id="about">
+
+        <div class="section-label">The premise</div>
+
+        <div class="manifesto">
+
+          <p>
+            Research shouldn't live behind a paywall and a 30-page PDF.
+          </p>
+
+          <p>
+            We use science to make sense of real life, internet discourse,
+            relationships, pop culture, news, and whatever everyone is
+            arguing about this week.
+          </p>
+
+          <p>
+            We show our sources. We talk about limitations.
+          </p>
+
+          <p>
+            And sometimes the scientific conclusion is genuinely:
+            <em>we have no idea.</em>
+          </p>
+
+          <div class="small">
+            Peer Review Lab is an independent science and culture media
+            project making research easier to understand, more entertaining,
+            and more useful in everyday life.
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- SERIES -->
+
+      <section id="series">
+
+        <div class="section-label">Recurring series</div>
+
+        <h2 class="section-title">
+          A little science for whatever you're currently obsessed with.
+        </h2>
+
+        <div class="series-grid">
+
+          <article class="series-card">
+            <div class="series-number">001</div>
+
+            <h3>Science Side-Eye 🚩</h3>
+
+            <p>
+              Red flags in science, news, viral claims, and suspiciously
+              confident headlines.
+            </p>
+          </article>
+
+
+          <article class="series-card">
+            <div class="series-number">002</div>
+
+            <h3>Peer Reviewing Life</h3>
+
+            <p>
+              Research for relationships, friendships, work, habits,
+              social life, and generally being a person.
+            </p>
+          </article>
+
+
+          <article class="series-card">
+            <div class="series-number">003</div>
+
+            <h3>
+              Reading It So You Don't Have To
+              <br>
+              <em>(But You Should)</em>
+            </h3>
+
+            <p>
+              The interesting parts of psychology, sociology, science,
+              and culture books.
+            </p>
+          </article>
+
+
+          <article class="series-card">
+            <div class="series-number">004</div>
+
+            <h3>Peer Reviewing Pop Culture</h3>
+
+            <p>
+              Reality TV, celebrities, movies, internet drama, and what
+              behavioral science can tell us about them.
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- PEOPLE -->
+
+      <section class="people">
+
+        <div class="section-label">People worth knowing</div>
+
+        <div class="people-copy">
+
+          <h2 class="section-title">
+            Smart people are doing ridiculously interesting things.
+            We'd like you to meet them.
+          </h2>
+
+          <p>
+            Scientists, researchers, students, and other people worth
+            knowing — including the stories, backgrounds, and very
+            non-linear paths behind their work.
+          </p>
+
+        </div>
+      </section>
+
+
+      <!-- SUBMIT -->
+
+      <section id="submit">
+
+        <div class="submit-box">
+
+          <div class="section-label">Your turn</div>
+
+          <h2>What should we peer review?</h2>
+
+          <p>
+            What's something you've always wondered if there's research on?
+            A relationship question? A viral claim? Something your group
+            chat won't stop arguing about? Send it to us.
+          </p>
+
+          <!-- Replace # with your Google Form or submission link -->
+
+          <a
+            class="button primary"
+            href="#"
+            target="_blank"
+            rel="noopener"
+          >
+            Submit a Question
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand">Peer Review Lab™</div>
+
+          <div class="footer-small">
+            @peerreviewlab
+            <br>
+            science • culture • receipts
+          </div>
+        </div>
+
+        <div class="footer-links">
+
+          <a
+            href="https://www.instagram.com/peerreviewlab/"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+
+          <!-- Replace # with final URLs -->
+
+          <a href="#" target="_blank" rel="noopener">TikTok</a>
+
+          <a href="mailto:hello@peerreviewlab.com">Contact</a>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+</body>
+</html>
+```
